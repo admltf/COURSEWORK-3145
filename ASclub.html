@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>.sty1 {display:inline-block}</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>After School Club</title>
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet"
+    href ="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1 v-text="sitename"></h1>
+            <button @click='showCheckout'>
+                {{cartItemCount}}
+                <span class="fas fa-shopping-basket"></span> Checkout
+            </button>
+        </header>
+        <main>
+            <div v-if='showProduct'>
+                <img height="105px" width="105px"
+                v-bind:src="product.image">
+        </img>
+    <div class="sty1">  <h2 v-text="product.title"></h2>
+            <p v-text="product.location"></p>
+            <p>Price: {{product.price}}</p>
+            <button @click='addToCart'
+            v-bind:disabled='!canAdd'>
+                Add to basket
+            </button>
+    </div>
+    </div>
+
+    <div v-else>
+        <h2>Checkout</h2>
+    </div>
+        </main>
+    </div>
+
+    <script>
+    let clubstore = new Vue({
+        el: '#app' ,
+        data: {
+            showProduct: true,
+            sitename: 'After School Club',
+            product: {
+                id: 100,
+                title: "Math",
+                location: "London",
+                price: 100,
+                image: "mathimg.png",
+                availInventory: 5
+            },
+            cart: [],
+        },
+            computed: {
+                cartItemCount: function() {
+                    return this.cart.length || '';
+                },
+                canAdd: function() {
+                    return this.product.availInventory > this.cartItemCount;
+                }
+
+            }
+        ,
+        methods: {
+            addToCart() {
+                this.cart.push( this.product.id );
+            },
+
+            showCheckout() {
+                this.showProduct = this.showProduct ? false : true;
+
+            },
+        }
+
+    });
+    </script>
+    
+</body>
+</html>
