@@ -22,16 +22,19 @@
         </header>
         <main>
             <div v-if='showProduct'>
-                <img height="105px" width="105px"
+                <img height="120px" width="120px"
                 v-bind:src="product.image">
         </img>
     <div class="sty1">  <h2 v-text="product.title"></h2>
             <p v-text="product.location"></p>
-            <p>Price: {{product.price}}</p>
+            <p>Spaces: {{product.spaces}}</p>
+            <p>Price: £{{product.price}}</p>
             <button @click='addToCart'
             v-bind:disabled='!canAdd'>
+            <span class="fas fa-calculator"></span>
                 Add to basket
             </button>
+
     </div>
     </div>
 
@@ -45,10 +48,17 @@
            <strong>Last Name:</strong>
            <input v-model="order.lastName"/>
        </p>
+       <p>
+        <strong>Phone Number:</strong>
+        <input v-model="order.number"/>
+       </p>
+
 
        <h2>Purchase Information</h2>
        <p>First Name: {{order.firstName}}</p>
        <p>Last Name: {{order.lastName}}</p>
+       <p>Phone Number: {{order.number}}</p>
+       <button @click="purchase">Complete Purchase</button>
 
     </div>
         </main>
@@ -66,13 +76,14 @@
                 location: "London",
                 price: 100,
                 image: "mathimg.png",
-                availInventory: 5
+                spaces: 5
             },
             order: {
                 firstName: '',
                 lastName: '',
-                
+                number:'',         
             },
+
             cart: [],
         },
             computed: {
@@ -80,7 +91,7 @@
                     return this.cart.length || '';
                 },
                 canAdd: function() {
-                    return this.product.availInventory > this.cartItemCount;
+                    return this.product.spaces > this.cartItemCount;
                 }
 
             }
@@ -94,6 +105,10 @@
                 this.showProduct = this.showProduct ? false : true;
 
             },
+
+            purchase() {
+                alert('Purchase Submitted!')
+            }
         }
 
     });
