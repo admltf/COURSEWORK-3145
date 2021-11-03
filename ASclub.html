@@ -37,6 +37,19 @@
 
     <div v-else>
         <h2>Checkout</h2>
+       <p>
+           <strong>First Name:</strong>
+           <input v-model="order.firstName"/>
+       </p> 
+       <p>
+           <strong>Last Name:</strong>
+           <input v-model="order.lastName"/>
+       </p>
+
+       <h2>Purchase Information</h2>
+       <p>First Name: {{order.firstName}}</p>
+       <p>Last Name: {{order.lastName}}</p>
+
     </div>
         </main>
     </div>
@@ -54,6 +67,11 @@
                 price: 100,
                 image: "mathimg.png",
                 availInventory: 5
+            },
+            order: {
+                firstName: '',
+                lastName: '',
+                
             },
             cart: [],
         },
