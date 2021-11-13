@@ -1,7 +1,7 @@
 lessons = [
     {
         id: 100,
-        title: "Math",
+        title: "Math" ,
         location: "London",
         price: 100,
         image: "../images/mathimg.png",
