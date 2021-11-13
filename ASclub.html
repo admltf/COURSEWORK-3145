@@ -23,12 +23,12 @@
         <main>
             <div v-if='showProduct'>
                 <img height="120px" width="120px"
-                v-bind:src="product.image">
+                v-bind:src="lesson.image">
         </img>
-    <div class="sty1">  <h2 v-text="product.title"></h2>
-            <p v-text="product.location"></p>
-            <p>Spaces: {{product.spaces}}</p>
-            <p>Price: £{{product.price}}</p>
+    <div class="sty1">  <h2 v-text="lesson.title"></h2>
+            <p v-text="lesson.location"></p>
+            <p>Spaces: {{lesson.spaces}}</p>
+            <p>Price: £{{lesson.price}}</p>
             <button @click='addToCart'
             v-bind:disabled='!canAdd'>
             <span class="fas fa-calculator"></span>
@@ -84,7 +84,7 @@
         data: {
             showProduct: true,
             sitename: 'After School Club',
-            product: {
+            lesson: {
                 id: 100,
                 title: "Math",
                 location: "London",
@@ -112,17 +112,17 @@
                     return this.cart.length || '';
                 },
                 canAdd: function() {
-                    return this.product.spaces > this.cartItemCount;
+                    return this.lesson.spaces > this.cartItemCount;
                 },
                 spacesLeft: function() {
-                    return this.product.spaces - this.cartItemCount;
+                    return this.lesson.spaces - this.cartItemCount;
                 },
 
             }
         ,
         methods: {
             addToCart() {
-                this.cart.push( this.product.id );
+                this.cart.push( this.lesson.id );
             },
 
             showCheckout() {
