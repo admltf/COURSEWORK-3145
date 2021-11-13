@@ -34,6 +34,9 @@
             <span class="fas fa-calculator"></span>
                 Add to basket
             </button>
+            <span v-if="spacesLeft < 3">
+                Only {{spacesLeft}} spaces left!
+            </span>
 
     </div>
     </div>
@@ -92,7 +95,10 @@
                 },
                 canAdd: function() {
                     return this.product.spaces > this.cartItemCount;
-                }
+                },
+                spacesLeft: function() {
+                    return this.product.spaces - this.cartItemCount;
+                },
 
             }
         ,
@@ -102,7 +108,8 @@
             },
 
             showCheckout() {
-                this.showProduct = this.showProduct ? false : true;
+                if (this.cart.length > 0){
+                this.showProduct = this.showProduct ? false : true;}
 
             },
 
