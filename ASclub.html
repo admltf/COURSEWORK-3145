@@ -33,6 +33,7 @@
             <p>Price: £{{lesson.price}}</p>
             <button @click='addToCart(lesson)'
             :disabled='!canAdd(lesson)' >
+            <span class="fas fa-shopping-basket"></span>
                 Add to basket
             </button>
             <span v-if="lesson.spaces === cartCount(lesson.id) "> No space left. </span>
@@ -85,14 +86,6 @@
         data: {
             showProduct: true,
             sitename: 'After School Club',
-            lesson: {
-                id: 100,
-                title: "Math",
-                location: "London",
-                price: 100,
-                image: "mathimg.png",
-                spaces: 5
-            },
             lessons: lessons,
             order: {
                 firstName: '',

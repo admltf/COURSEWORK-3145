@@ -5,7 +5,7 @@ lessons = [
         location: "London",
         price: 100,
         image: "../images/mathimg.png",
-        spaces: 5
+        spaces: 5,
     },
 
     {
