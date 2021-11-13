@@ -34,9 +34,9 @@
             <span class="fas fa-calculator"></span>
                 Add to basket
             </button>
-            <span v-if="spacesLeft < 3">
-                Only {{spacesLeft}} spaces left!
-            </span>
+            <span v-if="spacesLeft === 0"> No space left. </span>
+            <span v-else-if="spacesLeft < 3"> Only {{spacesLeft}} spaces left!</span>
+            <span v-else> Book now!</span>
 
     </div>
     </div>
@@ -55,12 +55,23 @@
         <strong>Phone Number:</strong>
         <input v-model="order.number"/>
        </p>
+       <p>
+           <strong>Country:</strong>
+           <select v-model="order.country">
+            <option disabled value="">Country</option>
+            <option v-for="(country, key) in countries"
+            v-bind:value="country">
+         {{key}}</option>
+        </select>
+       </p>
+       
 
 
        <h2>Purchase Information</h2>
        <p>First Name: {{order.firstName}}</p>
        <p>Last Name: {{order.lastName}}</p>
        <p>Phone Number: {{order.number}}</p>
+       <p>Country: {{order.country}}</p>
        <button @click="purchase">Complete Purchase</button>
 
     </div>
@@ -84,7 +95,14 @@
             order: {
                 firstName: '',
                 lastName: '',
-                number:'',         
+                number:'',  
+                state:'',      
+            },
+            countries: {
+                ENG: 'England',
+                WAL: 'Wales',
+                SCT: 'Scotland',
+                NIR: 'Northern Ireland'
             },
 
             cart: [],
