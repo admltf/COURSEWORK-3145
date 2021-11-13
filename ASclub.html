@@ -33,11 +33,10 @@
             <p>Price: £{{lesson.price}}</p>
             <button @click='addToCart(lesson)'
             :disabled='!canAdd(lesson)' >
-            <span class="fas fa-calculator"></span>
                 Add to basket
             </button>
-            <span v-if="spacesLeft === 0"> No space left. </span>
-            <span v-else-if="spacesLeft < 3"> Only {{spacesLeft}} spaces left!</span>
+            <span v-if="lesson.spaces === cartCount(lesson.id) "> No space left. </span>
+            <span v-else-if="lesson.spaces - cartCount(lesson.id) < 3"> Only {{lesson.spaces - cartCount(lesson.id)}} spaces left!</span>
             <span v-else> Book now!</span>
 
     </div></div>
@@ -114,10 +113,6 @@
             computed: {
                 cartItemCount: function() {
                     return this.cart.length || '';
-                },
-
-                spacesLeft: function() {
-                    return this.lesson.spaces - this.cartItemCount;
                 },
 
             }
