@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/vue"></script>
     <link rel="stylesheet"
     href ="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="lessons.js"></script>
 </head>
 
 <body>
@@ -22,6 +23,7 @@
         </header>
         <main>
             <div v-if='showProduct'>
+                <div v-for="lesson in lessons">
                 <img height="120px" width="120px"
                 v-bind:src="lesson.image">
         </img>
@@ -29,8 +31,8 @@
             <p v-text="lesson.location"></p>
             <p>Spaces: {{lesson.spaces}}</p>
             <p>Price: £{{lesson.price}}</p>
-            <button @click='addToCart'
-            v-bind:disabled='!canAdd'>
+            <button @click='addToCart(lesson)'
+            :disabled='!canAdd(lesson)' >
             <span class="fas fa-calculator"></span>
                 Add to basket
             </button>
@@ -38,7 +40,7 @@
             <span v-else-if="spacesLeft < 3"> Only {{spacesLeft}} spaces left!</span>
             <span v-else> Book now!</span>
 
-    </div>
+    </div></div>
     </div>
 
     <div v-else>
@@ -92,6 +94,7 @@
                 image: "mathimg.png",
                 spaces: 5
             },
+            lessons: lessons,
             order: {
                 firstName: '',
                 lastName: '',
@@ -106,14 +109,13 @@
             },
 
             cart: [],
+
         },
             computed: {
                 cartItemCount: function() {
                     return this.cart.length || '';
                 },
-                canAdd: function() {
-                    return this.lesson.spaces > this.cartItemCount;
-                },
+
                 spacesLeft: function() {
                     return this.lesson.spaces - this.cartItemCount;
                 },
@@ -121,8 +123,9 @@
             }
         ,
         methods: {
-            addToCart() {
-                this.cart.push( this.lesson.id );
+            addToCart(lesson) {
+                if ('canAdd(lesson'){
+                this.cart.push(lesson.id )}
             },
 
             showCheckout() {
@@ -130,6 +133,21 @@
                 this.showProduct = this.showProduct ? false : true;}
 
             },
+
+            cartCount(id) {
+                let count = 0;
+                for(let i = 0; i < this.cart.length; i++) {
+                    if (this.cart[i] === id) {
+                        count++;
+                    }
+                }
+                return count;
+
+            },
+
+            canAdd(lesson) {
+                    return lesson.spaces > this.cartCount(lesson.id);
+                },
 
             purchase() {
                 alert('Purchase Submitted!')
