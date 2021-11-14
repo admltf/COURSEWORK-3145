@@ -23,7 +23,7 @@
         </header>
         <main>
             <div v-if='showProduct'>
-                <div v-for="lesson in lessons">
+                <div v-for="lesson in sortedLessons">
                 <img height="120px" width="120px"
                 v-bind:src="lesson.image">
         </img>
@@ -107,6 +107,15 @@
                 cartItemCount: function() {
                     return this.cart.length || '';
                 },
+
+                sortedLessons() {
+                    function compare(a, b) {
+                        if (a.price > b.price) return -1;
+                        if (a.price < b.price) return 1;
+                        return 0;
+                    }
+                    return this.lessons.sort(compare);
+                }
 
             }
         ,
