@@ -23,6 +23,12 @@
         </header>
         <main>
             <div v-if='showProduct'>
+                <br><strong>Sort By</strong>
+                <p><button @click="sort('title')"><span class="fas fa-sort"></span></button> Lesson</p>
+                <p><button @click="sort('location')"><span class="fas fa-sort"></span></button> Location</p>
+                <p><button @click="sort('price')"><span class="fas fa-sort"></span></button> Price</p>
+                <p><button @click="sort('spaces')"><span class="fas fa-sort"></span></button> Spaces</p>
+
                 <div v-for="lesson in sortedLessons">
                 <img height="120px" width="120px"
                 v-bind:src="lesson.image">
@@ -67,8 +73,6 @@
         </select>
        </p>
        
-
-
        <h2>Purchase Information</h2>
        <p>First Name: {{order.firstName}}</p>
        <p>Last Name: {{order.lastName}}</p>
@@ -101,6 +105,8 @@
             },
 
             cart: [],
+            sortBy: 'title',
+            sortDir: 'asc',
 
         },
             computed: {
@@ -108,15 +114,16 @@
                     return this.cart.length || '';
                 },
 
-                sortedLessons() {
-                    function compare(a, b) {
-                        if (a.price > b.price) return -1;
-                        if (a.price < b.price) return 1;
+                sortedLessons: function() {
+                    return this.lessons.sort((a, b) =>{
+                        let modifier = 1;
+                        if(this.sortDir === 'desc') modifier = -1;
+                        if(a[this.sortBy] < b[this.sortBy]) return -1 * modifier;
+                        if(a[this.sortBy] > b[this.sortBy]) return 1 * modifier;
                         return 0;
-                    }
-                    return this.lessons.sort(compare);
-                }
+                    })
 
+                },
             }
         ,
         methods: {
@@ -145,6 +152,14 @@
             canAdd(lesson) {
                     return lesson.spaces > this.cartCount(lesson.id);
                 },
+
+            sort(s) {
+                if(s === this.sortBy) {
+                    this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
+                }
+                this.sortBy = s;
+
+            },
 
             purchase() {
                 alert('Purchase Submitted!')
