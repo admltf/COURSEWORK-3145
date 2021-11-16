@@ -129,7 +129,8 @@
         methods: {
             addToCart(lesson) {
                 if ('canAdd(lesson'){
-                this.cart.push(lesson.id )}
+                this.cart.push(lesson.id )
+                }
             },
 
             showCheckout() {
@@ -162,7 +163,10 @@
             },
 
             purchase() {
-                alert('Purchase Submitted!')
+                if (this.order.firstName && this.order.lastName && this.order.number) {
+                alert('Purchase Submitted!')}
+                else 
+                alert('Please enter name & number.')
             }
         }
 
