@@ -60,15 +60,15 @@
         <form @submit="purchase()">
        <p>
            <strong>First Name:</strong>
-           <input v-model="order.firstName" required/>
+           <input v-model="order.firstName" pattern="[A-Za-z]+" title="Letters only." required/>
        </p> 
        <p>
            <strong>Last Name:</strong>
-           <input v-model="order.lastName"  required/>
+           <input v-model="order.lastName"  pattern="[A-Za-z]+" title="Letters only." required/>
        </p>
        <p>
         <strong>Phone Number:</strong>
-        <input v-model="order.number" type="number" required/>
+        <input v-model="order.number" pattern="[0-9]+" title="Numbers only." required/>
        </p>
        <p>
            <strong>Country:</strong>
@@ -138,11 +138,11 @@
                         return 0;
                     })
                 },
-                filteredList: function() {
+                /*filteredList: function() {
                     return this.lessons.filter((lesson) => {
                         return lesson.title.match(this.search);
                     })
-                },
+                },*/
             },
 
         methods: {
