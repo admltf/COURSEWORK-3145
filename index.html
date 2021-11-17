@@ -48,34 +48,36 @@
 
     <div v-else>
         <h2>Checkout</h2>
+        <form @submit="purchase()">
        <p>
            <strong>First Name:</strong>
-           <input v-model="order.firstName"/>
+           <input v-model="order.firstName" required/>
        </p> 
        <p>
            <strong>Last Name:</strong>
-           <input v-model="order.lastName"/>
+           <input v-model="order.lastName" required/>
        </p>
        <p>
         <strong>Phone Number:</strong>
-        <input v-model="order.number"/>
+        <input v-model="order.number" required/>
        </p>
        <p>
            <strong>Country:</strong>
-           <select v-model="order.country">
+           <select v-model="order.country" required>
             <option disabled value="">Country</option>
             <option v-for="(country, key) in countries"
             v-bind:value="country">
          {{key}}</option>
         </select>
        </p>
+       <button type="submit">Complete Purchase</button>
+       </form>
        
        <h2>Purchase Information</h2>
        <p>First Name: {{order.firstName}}</p>
        <p>Last Name: {{order.lastName}}</p>
        <p>Phone Number: {{order.number}}</p>
        <p>Country: {{order.country}}</p>
-       <button @click="purchase">Complete Purchase</button>
 
     </div>
         </main>
@@ -127,7 +129,6 @@
             addToCart(lesson) {
                 if ('canAdd(lesson'){
                 this.cart.push(lesson.id )
-                lesson.spaces--;
                 }
             },
 
@@ -163,8 +164,6 @@
             purchase() {
                 if (this.order.firstName && this.order.lastName && this.order.number) {
                 alert('Purchase Submitted!')}
-                else 
-                alert('Please enter name & number.')
             }
         }
 
