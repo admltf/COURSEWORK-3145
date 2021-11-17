@@ -13,19 +13,27 @@
     <div id="app">
         <header>
             <h1 v-text="sitename"></h1>
+            <!--Start Cart-->
             <button @click='showCheckout'>
                 {{this.cart.length}}
                 <span class="fas fa-shopping-basket"></span> Checkout
             </button>
         </header>
+            <!--End Cart-->
+
         <main>
             <div v-if='showProduct'>
+            <!--Start Sort & Search-->
                 <br><strong>Sort By</strong>
                 <p><button @click="sort('title')"><span class="fas fa-sort"></span></button> Lesson</p>
                 <p><button @click="sort('location')"><span class="fas fa-sort"></span></button> Location</p>
                 <p><button @click="sort('price')"><span class="fas fa-sort"></span></button> Price</p>
                 <p><button @click="sort('spaces')"><span class="fas fa-sort"></span></button> Spaces</p>
+                
+                    <input type="text" v-model="search" placeholder="Search lesson.."/>
+            <!--End Sort & Search-->
 
+            <!--Start Display Lessons-->
                 <div class="sty2" v-for="lesson in sortedLessons">
                 <img height="120px" width="120px"
                 v-bind:src="lesson.image">
@@ -42,11 +50,12 @@
             <span v-if="lesson.spaces === cartCount(lesson.id) "> No space left. </span>
             <span v-else-if="lesson.spaces - cartCount(lesson.id) < 3"> Only {{lesson.spaces - cartCount(lesson.id)}} spaces left!</span>
             <span v-else> Book now!</span>
-
-    </div></div>
+            </div> </div>
+            <!--End Display Lessons-->
     </div>
 
     <div v-else>
+            <!--Start Checkout Page-->
         <h2>Checkout</h2>
         <form @submit="purchase()">
        <p>
@@ -89,15 +98,16 @@
     <button @click="deleteLesson(cart)">Delete</button>
        </div>
        </div>
-
+          <!--End Checkout Page-->
     </div>
         </main>
     </div>
-
+          <!--Vue Instance && Functions-->
     <script>
     let clubstore = new Vue({
         el: '#app' ,
         data: {
+            search: '',
             showProduct: true,
             sitename: 'After School Club',
             lessons: lessons,
@@ -128,7 +138,13 @@
                         return 0;
                     })
                 },
+                filteredList: function() {
+                    return this.lessons.filter((lesson) => {
+                        return lesson.title.match(this.search);
+                    })
+                },
             },
+
         methods: {
             addToCart(lesson) {
                 if ('canAdd(lesson'){
@@ -153,7 +169,6 @@
             },
             deleteLesson(cart) {
                 this.cart.splice(cart, 1)
-                lesson.spaces +=1
 
             },
             canAdd(lesson) {
@@ -171,8 +186,10 @@
             }
         }
 
-    });
+    }           
+    );
     </script>
+          <!--End Vue Instance && Functions--> 
     
 </body>
 </html>
