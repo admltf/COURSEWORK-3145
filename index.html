@@ -14,7 +14,7 @@
         <header>
             <h1 v-text="sitename"></h1>
             <button @click='showCheckout'>
-                {{cartItemCount}}
+                {{this.cart.length}}
                 <span class="fas fa-shopping-basket"></span> Checkout
             </button>
         </header>
@@ -55,11 +55,11 @@
        </p> 
        <p>
            <strong>Last Name:</strong>
-           <input v-model="order.lastName" required/>
+           <input v-model="order.lastName"  required/>
        </p>
        <p>
         <strong>Phone Number:</strong>
-        <input v-model="order.number" required/>
+        <input v-model="order.number" type="number" required/>
        </p>
        <p>
            <strong>Country:</strong>
@@ -109,10 +109,6 @@
 
         },
             computed: {
-                cartItemCount: function() {
-                    return this.cart.length || '';
-                },
-
                 sortedLessons: function() {
                     return this.lessons.sort((a, b) =>{
                         let modifier = 1;
@@ -128,7 +124,8 @@
         methods: {
             addToCart(lesson) {
                 if ('canAdd(lesson'){
-                this.cart.push(lesson.id )
+                this.cart.push(lesson )
+                lesson.spaces--;
                 }
             },
 
@@ -150,7 +147,7 @@
             },
 
             canAdd(lesson) {
-                    return lesson.spaces > this.cartCount(lesson.id);
+                    return lesson.spaces;
                 },
 
             sort(s) {
@@ -162,8 +159,7 @@
             },
 
             purchase() {
-                if (this.order.firstName && this.order.lastName && this.order.number) {
-                alert('Purchase Submitted!')}
+                alert('Purchase Submitted!')
             }
         }
 
