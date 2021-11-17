@@ -26,7 +26,7 @@
                 <p><button @click="sort('price')"><span class="fas fa-sort"></span></button> Price</p>
                 <p><button @click="sort('spaces')"><span class="fas fa-sort"></span></button> Spaces</p>
 
-                <div v-for="lesson in sortedLessons">
+                <div class="sty2" v-for="lesson in sortedLessons">
                 <img height="120px" width="120px"
                 v-bind:src="lesson.image">
         </img>
@@ -78,6 +78,17 @@
        <p>Last Name: {{order.lastName}}</p>
        <p>Phone Number: {{order.number}}</p>
        <p>Country: {{order.country}}</p>
+       <div v-for="lesson in cart">
+        <img height="120px" width="120px"
+        v-bind:src="lesson.image">
+</img>
+<div class="sty1">  <h2 v-text="lesson.title"></h2>
+    <p v-text="lesson.location"></p>
+    <p>Spaces: {{lesson.spaces}}</p>
+    <p>Price: £{{lesson.price}}</p>
+    <button @click="deleteLesson(cart)">Delete</button>
+       </div>
+       </div>
 
     </div>
         </main>
@@ -106,7 +117,6 @@
             cart: [],
             sortBy: 'title',
             sortDir: 'asc',
-
         },
             computed: {
                 sortedLessons: function() {
@@ -117,10 +127,8 @@
                         if(a[this.sortBy] > b[this.sortBy]) return 1 * modifier;
                         return 0;
                     })
-
                 },
-            }
-        ,
+            },
         methods: {
             addToCart(lesson) {
                 if ('canAdd(lesson'){
@@ -128,13 +136,11 @@
                 lesson.spaces--;
                 }
             },
-
             showCheckout() {
-                if (this.cart.length > 0){
+                if (this.cart.length > 0 ){
                 this.showProduct = this.showProduct ? false : true;}
 
             },
-
             cartCount(id) {
                 let count = 0;
                 for(let i = 0; i < this.cart.length; i++) {
@@ -145,11 +151,14 @@
                 return count;
 
             },
+            deleteLesson(cart) {
+                this.cart.splice(cart, 1)
+                lesson.spaces +=1
 
+            },
             canAdd(lesson) {
                     return lesson.spaces;
                 },
-
             sort(s) {
                 if(s === this.sortBy) {
                     this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
@@ -157,7 +166,6 @@
                 this.sortBy = s;
 
             },
-
             purchase() {
                 alert('Purchase Submitted!')
             }
