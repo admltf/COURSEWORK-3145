@@ -4,7 +4,7 @@ lessons = [
         title: "Math" ,
         location: "London",
         price: 60,
-        image: "../images/mathimg.png",
+        image: "../images/mathimg.PNG",
         spaces: 5,
     },
 
