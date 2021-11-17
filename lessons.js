@@ -4,7 +4,7 @@ lessons = [
         title: "Math" ,
         location: "London",
         price: 60,
-        image: "/images/mathimg.png",
+        image: "images/mathimg.png",
         spaces: 5,
     },
 
@@ -13,7 +13,7 @@ lessons = [
         title: "English",
         location: "London",
         price: 60,
-        image: "../images/engimg.png",
+        image: "images/engimg.png",
         spaces: 5,
     },
 
@@ -22,7 +22,7 @@ lessons = [
         title: "History",
         location: "Wales",
         price: 50,
-        image: "../images/hisimg.png",
+        image: "images/hisimg.png",
         spaces: 5,
     },
 
@@ -31,7 +31,7 @@ lessons = [
         title: "Geography",
         location: "Scotland",
         price: 50,
-        image: "../images/geoimg.png",
+        image: "images/geoimg.png",
         spaces: 5,
     },
 
@@ -40,7 +40,7 @@ lessons = [
         title: "Computer Science",
         location: "London",
         price: 100,
-        image: "../images/comimg.png",
+        image: "images/comimg.png",
         spaces: 5,
     },
 
@@ -49,7 +49,7 @@ lessons = [
         title: "Art",
         location: "London",
         price: 80,
-        image: "../images/artimg.png",
+        image: "images/artimg.png",
         spaces: 5,
     },
 
@@ -58,7 +58,7 @@ lessons = [
         title: "Music",
         location: "London",
         price: 80,
-        image: "../images/musimg.png",
+        image: "images/musimg.png",
         spaces: 5,
     },
 
@@ -67,7 +67,7 @@ lessons = [
         title: "Sports",
         location: "Northern Ireland",
         price: 70,
-        image: "../images/spoimg.png",
+        image: "images/spoimg.png",
         spaces: 5,
     },
 
@@ -76,7 +76,7 @@ lessons = [
         title: "Science",
         location: "Northern Ireland",
         price: 60,
-        image: "../images/sciimg.png",
+        image: "images/sciimg.png",
         spaces: 5,
     },
 
@@ -85,7 +85,7 @@ lessons = [
         title: "Drama",
         location: "Scotland",
         price: 50,
-        image: "../images/draimg.png",
+        image: "images/draimg.png",
         spaces: 5,
     },   
 ]
