@@ -80,7 +80,7 @@
          {{key}}</option>
         </select>
        </p>
-       <button type="submit">Complete Purchase</button>
+       <button type="submit" :disabled='!emptyCart(cart)'>Complete Purchase</button>
        </form>
        
        <h2>Purchase Information</h2>
@@ -180,6 +180,9 @@
             canAdd(lesson) {
                     return lesson.spaces;
                 },
+            emptyCart(cart) {
+                    return this.cart.length;
+            },
             sort(s) {
                 if(s === this.sortBy) {
                     this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
@@ -188,7 +191,8 @@
 
             },
             purchase() {
-                alert('Purchase Submitted!')
+                if (this.cart.length > 0) {
+                alert('Purchase Submitted!')}
             }
         }
 
