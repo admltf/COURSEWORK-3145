@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>.sty1 {display:inline-block}</style>
     <title>After School Club</title>
     <script src="https://unpkg.com/vue"></script>
     <link rel="stylesheet"
     href ="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="lessons.js"></script>
 </head>
 
@@ -29,8 +29,7 @@
                 <p><button @click="sort('location')"><span class="fas fa-sort"></span></button> Location</p>
                 <p><button @click="sort('price')"><span class="fas fa-sort"></span></button> Price</p>
                 <p><button @click="sort('spaces')"><span class="fas fa-sort"></span></button> Spaces</p>
-                
-                    <input type="text" v-model="search" placeholder="Search lesson.."/>
+                <p>  <input type="text" v-model="search" placeholder="Search lesson.."/></p>
             <!--End Sort & Search-->
 
             <!--Start Display Lessons-->
@@ -47,9 +46,9 @@
             <span class="fas fa-shopping-basket"></span>
                 Add to basket
             </button>
-            <span v-if="lesson.spaces === cartCount(lesson.id) "> No space left. </span>
-            <span v-else-if="lesson.spaces - cartCount(lesson.id) < 3"> Only {{lesson.spaces - cartCount(lesson.id)}} spaces left!</span>
-            <span v-else> Book now!</span>
+            <span v-if="lesson.spaces === cartCount(lesson.id) ">No space left.</span>
+            <span v-else-if="lesson.spaces - cartCount(lesson.id) < 3">{{lesson.spaces - cartCount(lesson.id)}} spaces left!</span>
+            <span v-else>  Book now!  </span>
             </div> </div>
             <!--End Display Lessons-->
     </div>
