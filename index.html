@@ -56,6 +56,7 @@
 
     <div v-else>
             <!--Start Checkout Page-->
+        <br><button @click='retLessons'><span class="fas fa-arrow-circle-left"></span> Lessons</button>
         <h2>Checkout</h2>
         <form @submit="purchase()">
        <p>
@@ -95,7 +96,7 @@
     <p v-text="lesson.location"></p>
     <p>Spaces: {{lesson.spaces}}</p>
     <p>Price: £{{lesson.price}}</p>
-    <button @click="deleteLesson(cart)">Delete</button>
+    <button @click="deleteLesson(lesson)">Delete</button>
        </div>
        </div>
           <!--End Checkout Page-->
@@ -157,6 +158,10 @@
                 this.showProduct = this.showProduct ? false : true;}
 
             },
+            retLessons() {
+                this.showProduct = true;
+
+            },
             cartCount(id) {
                 let count = 0;
                 for(let i = 0; i < this.cart.length; i++) {
@@ -167,9 +172,10 @@
                 return count;
 
             },
-            deleteLesson(cart) {
-                this.cart.splice(cart, 1)
-
+            deleteLesson(lesson) {
+                var idx = this.cart.indexOf(lesson)
+                this.cart.splice(idx, 1)
+                lesson.spaces++;
             },
             canAdd(lesson) {
                     return lesson.spaces;
