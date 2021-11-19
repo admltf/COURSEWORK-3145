@@ -79,7 +79,7 @@
          {{key}}</option>
         </select>
        </p>
-       <button type="submit" :disabled='!emptyCart(cart)'>Complete Purchase</button>
+       <button type="submit" :disabled='!validForm'>Complete Purchase</button>
        </form>
        
        <h2>Purchase Information</h2>
@@ -138,6 +138,16 @@
                         return 0;
                     })
                 },
+                validForm: function() {
+                    var namevalid = /^[a-zA-Z]+$/
+                    var numvalid = /^\d+$/
+                    if (namevalid.test(this.order.firstName) && namevalid.test(this.order.lastName)
+                     && numvalid.test(this.order.number) && (this.cart.length > 0)) {
+                         return true;
+                     }
+                     else 
+                     return false;
+                },
                 /*filteredList: function() {
                     return this.lessons.filter((lesson) => {
                         return lesson.title.match(this.search);
@@ -179,14 +189,14 @@
             canAdd(lesson) {
                     return lesson.spaces;
                 },
-            emptyCart(cart) {
-                    return this.cart.length;
-            },
             sort(s) {
                 if(s === this.sortBy) {
                     this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
                 }
-                this.sortBy = s;
+                this.sortBy = s
+                return this.lessons.filter((lesson) => {
+                        return lesson.title.match(this.search);
+                    })
 
             },
             purchase() {
