@@ -128,6 +128,19 @@
             sortBy: 'title',
             sortDir: 'asc',
         },
+
+        created: function() {
+            fetch('https://mdx3145.herokuapp.com/collection/lessons').then(
+                function (response) {
+                    response.json().then(
+                        function (json) {
+                            clubstore.lessons = json;
+                        }
+                    )
+                }
+            )
+
+        },
             computed: {
                 sortedLessons: function() {
                     return this.lessons.sort((a, b) =>{
