@@ -110,7 +110,7 @@
             search: '',
             showProduct: true,
             sitename: 'After School Club',
-            lessons: lessons,
+            lessons: [],
             order: {
                 firstName: '',
                 lastName: '',
@@ -130,6 +130,8 @@
         },
 
         created: function() {
+
+            //load lessons from database using fetch
             fetch('https://mdx3145.herokuapp.com/collection/lessons').then(
                 function (response) {
                     response.json().then(
