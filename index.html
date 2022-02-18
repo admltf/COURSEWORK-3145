@@ -79,7 +79,7 @@
          {{key}}</option>
         </select>
        </p>
-       <button type="submit" :disabled='!validForm'>Complete Purchase</button>
+       <button @Click="orderCompl" :disabled='!validForm'>Complete Purchase</button>
        </form>
        
        <h2>Purchase Information</h2>
@@ -212,6 +212,37 @@
                 return this.lessons.filter((lesson) => {
                         return lesson.title.match(this.search);
                     })
+
+            },
+
+            orderCompl() {
+                const newOrder = { "first name": this.order.firstName, 
+                "last name": this.order.lastName, "number": this.order.number, "order" : this.cart}
+
+                fetch ('https://mdx3145.herokuapp.com/collection/orders', {
+                    method: 'POST', 
+                    headers: {
+                        "Content-Type" : "application/json", 
+                    },
+                    body: JSON.stringify(newOrder),
+                }).then(function (response) {
+                    response.json().then(
+                        console.log("Order placed in database")
+                    )
+                    alert ("Order submitted.")
+                })
+
+                let newSpaces = { "spaces" : this.newOrder.spaces} 
+                    fetch('https://mdx3145.herokuapp.com/collection/lessons' + this.newOrder.id, {
+                        method: 'PUT',
+                        headers: {
+                            "Content-Type" : "application/json"
+                        },
+                        body: JSON.stringify(newSpaces),
+                    }).then(response => response.text()).then(responseJSON => {
+                        console.log(responseJSON)
+                    })
+                
 
             },
             purchase() {
