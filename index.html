@@ -231,17 +231,6 @@
                     )
                     alert ("Order submitted.")
                 })
-
-                let newSpaces = { "spaces" : this.newOrder.spaces} 
-                    fetch('https://mdx3145.herokuapp.com/collection/lessons' + this.newOrder.id, {
-                        method: 'PUT',
-                        headers: {
-                            "Content-Type" : "application/json"
-                        },
-                        body: JSON.stringify(newSpaces),
-                    }).then(response => response.text()).then(responseJSON => {
-                        console.log(responseJSON)
-                    })
                 
 
             },
